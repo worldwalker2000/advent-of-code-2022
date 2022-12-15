@@ -35,9 +35,22 @@ for line in lines[1:]:
 for _ in range(len(path.split("/")[0:-1])):
     process_line("$ cd ..")
 
+# part 1
 sum = 0
 for dir, size in dirs.items():
     if size <= 100000:
         sum += size
 
-print(sum)
+# print(sum)
+
+# part 2
+free_space = 70000000 - dirs["/"]
+update_size = 30000000
+needed = update_size-free_space
+
+ds = 2**32-1
+for dir, size in dirs.items():
+    if size <= ds and size >= needed:
+        ds = size
+
+print(ds)
